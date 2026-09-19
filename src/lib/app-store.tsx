@@ -72,7 +72,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       /* ignore */
     }
     const ua = navigator.userAgent;
-    setIsIOS(/iphone|ipad|ipod/i.test(ua) && !/crios|fxios/i.test(ua) ? true : /iphone|ipad|ipod/i.test(ua));
+    setIsIOS(/iphone|ipad|ipod/i.test(ua) || (ua.includes("Mac") && "ontouchend" in document));
     const standalone =
       window.matchMedia("(display-mode: standalone)").matches ||
       (navigator as unknown as { standalone?: boolean }).standalone === true;
